@@ -13,7 +13,7 @@ Aerial Object Detection using a Drone with PX4 Autopilot and ROS 2. PX4 SITL and
 https://github.com/monemati/PX4-ROS2-Gazebo-YOLOv8/assets/58460889/fab19f49-0be6-43ea-a4e4-8e9bc8d59af9
 
 ## Docker
-- You can pull the already built image or use the provided Dockerfile.
+- You can pull the image (already built) or use the provided Dockerfile.
 
 ### Prerequisites
 Allow Docker to access the X11 display:
@@ -21,12 +21,21 @@ Allow Docker to access the X11 display:
 xhost +local:docker
 ```
 
-### Build Custom Image and Run
+### Pull The Image
+```commandline
+# Already built and uploaded in dockerhub; You can skip this step, if you want to build your own custom image.
+docker pull monemati/px4_ros2_gz_yolov8_image
+```
+
+### Build Custom Image
 ```commandline
 git clone https://github.com/monemati/PX4-ROS2-Gazebo-YOLOv8.git
 cd PX4-ROS2-Gazebo-YOLOv8
-docker build -t px4_ros2_gazebo_yolov8_image .
+docker build -t px4_ros2_gz_yolov8_image .
+```
 
+### Run The Docker
+```commandline
 XAUTH=/tmp/.docker.xauth
 touch $XAUTH
 xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
@@ -40,8 +49,8 @@ docker run --privileged -it --gpus all \
   --network=host --ipc=host --shm-size=2gb \
   --env="DISPLAY=$DISPLAY" \
   --env="QT_X11_NO_MITSHM=1" \
-  --rm --name px4_ros2_gazebo_yolov8_container \
-  px4_ros2_gazebo_yolov8_image
+  --rm --name px4_ros2_gz_yolov8_container \
+  px4_ros2_gz_yolov8_image
 ```
 
 ### What Launches in Docker
