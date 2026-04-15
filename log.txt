@@ -1,0 +1,90 @@
+pxh> param set BAT_EMERGEN_THR 0.0
+  BAT_EMERGEN_THR: curr: 0.0500 -> new: 0.0000
+pxh> # 告诉飞控：即使没有 GCS 连接，也允许进入 Offboard 模式
+pxh> param set COM_OBL_RC_ACT 0
+pxh> listener offboard_control_mode
+
+TOPIC: offboard_control_mode
+ offboard_control_mode
+    timestamp: 80065696 (0.018304 seconds ago)
+    position: True
+    velocity: False
+    acceleration: False
+    attitude: False
+    body_rate: False
+    thrust_and_torque: False
+    direct_actuator: False
+
+pxh> param set COM_BAT_ACT 0
+Invalid command: param
+type 'help' for a list of commands
+pxh> param set COM_RCL_ACT 0
+ERROR [param] Parameter COM_RCL_ACT not found.
+pxh> param set COM_BAT_ACT 0
+ERROR [param] Parameter COM_BAT_ACT not found.
+pxh> param set COM_RCL_ACT 0
+ERROR [param] Parameter COM_RCL_ACT not found.
+pxh> # 禁止在地面解锁后因为没起飞就自动 Disarm
+pxh> param set COM_DISARM_PRFLT 0
+pxh> # 禁止在任何情况下因为健康检查失败而自动 Disarm
+pxh> param set COM_DISARM_EN_ST 0
+ERROR [param] Parameter COM_DISARM_EN_ST not found.
+pxh> commander arm -f
+pxh> INFO  [commander] Armed by internal command
+INFO  [tone_alarm] arming warning
+INFO  [logger] Start file log (type: full)
+INFO  [logger] [logger] ./log/2026-04-13/11_51_28.ulg
+INFO  [logger] Opened full log file: ./log/2026-04-13/11_51_28.ulg
+WARN  [failsafe] Failsafe activated: entering Hold for 5 seconds
+WARN  [health_and_arming_checks] Preflight Fail: No connection to the GCS
+INFO  [tone_alarm] battery warning (fast)
+WARN  [failsafe] Failsafe activated
+INFO  [navigator] RTL: start return at 1 m (1 m above destination)
+pxh> commander mode offboard
+pxh> INFO  [commander] Takeoff detected
+
+pxh> param set BAT_EMERGEN_THR 0.0
+  BAT_EMERGEN_THR: curr: 0.0500 -> new: 0.0000
+pxh> # 告诉飞控：即使没有 GCS 连接，也允许进入 Offboard 模式
+pxh> param set COM_OBL_RC_ACT 0
+pxh> listener offboard_control_mode
+
+TOPIC: offboard_control_mode
+ offboard_control_mode
+    timestamp: 80065696 (0.018304 seconds ago)
+    position: True
+    velocity: False
+    acceleration: False
+    attitude: False
+    body_rate: False
+    thrust_and_torque: False
+    direct_actuator: False
+
+pxh> param set COM_BAT_ACT 0
+Invalid command: param
+type 'help' for a list of commands
+pxh> param set COM_RCL_ACT 0
+ERROR [param] Parameter COM_RCL_ACT not found.
+pxh> param set COM_BAT_ACT 0
+ERROR [param] Parameter COM_BAT_ACT not found.
+pxh> param set COM_RCL_ACT 0
+ERROR [param] Parameter COM_RCL_ACT not found.
+pxh> # 禁止在地面解锁后因为没起飞就自动 Disarm
+pxh> param set COM_DISARM_PRFLT 0
+pxh> # 禁止在任何情况下因为健康检查失败而自动 Disarm
+pxh> param set COM_DISARM_EN_ST 0
+ERROR [param] Parameter COM_DISARM_EN_ST not found.
+pxh> commander arm -f
+pxh> INFO  [commander] Armed by internal command
+INFO  [tone_alarm] arming warning
+INFO  [logger] Start file log (type: full)
+INFO  [logger] [logger] ./log/2026-04-13/11_51_28.ulg
+INFO  [logger] Opened full log file: ./log/2026-04-13/11_51_28.ulg
+WARN  [failsafe] Failsafe activated: entering Hold for 5 seconds
+WARN  [health_and_arming_checks] Preflight Fail: No connection to the GCS
+INFO  [tone_alarm] battery warning (fast)
+WARN  [failsafe] Failsafe activated
+INFO  [navigator] RTL: start return at 1 m (1 m above destination)
+pxh> commander mode offboard
+pxh> INFO  [commander] Takeoff detected
+

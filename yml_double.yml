@@ -1,0 +1,31 @@
+name: px4_dual_control
+root: /root
+
+windows:
+  - dual_uav:
+      layout: tiled
+      panes:
+        # 1. DDS Agent
+        - cd /root/Micro-XRCE-DDS-Agent && MicroXRCEAgent udp4 -p 8888
+
+        # 2. UAV 0 (Leader) - 强制增加 px4_0 命名空间
+        - |
+          sleep 3 && cd /root/PX4-Autopilot && \
+          PX4_SYS_AUTOSTART=4001 PX4_GZ_MODEL_POSE="280,-145,0.5,0,0,0" \
+          PX4_UXRCE_DDS_NS=px4_0 PX4_GZ_ID=0 PX4_GZ_MODEL=x500 ./build/px4_sitl_default/bin/px4 -i 0
+
+        # 3. UAV 1 (Follower) - 保持 px4_1 命名空间
+        - |
+          sleep 6 && cd /root/PX4-Autopilot && \
+          PX4_SYS_AUTOSTART=4001 PX4_GZ_MODEL_POSE="282,-145,0.5,0,0,0" \
+          PX4_UXRCE_DDS_NS=px4_1 PX4_GZ_ID=1 PX4_GZ_MODEL=x500 ./build/px4_sitl_default/bin/px4 -i 1
+
+        # 4. 键盘控制 (控制 UAV 0)
+        # 注意：如果 UAV 0 加了命名空间，请确保你的 MAVSDK 连接的是 14540 端口
+        - sleep 10 && cd /root/PX4-ROS2-Gazebo-YOLOv8 && python3 keyboard-mavsdk-test.py
+
+        # 5. 编队脚本终端
+        - sleep 12 && cd /root/PX4-ROS2-Gazebo-YOLOv8 && /bin/bash
+
+        # 6. 监控终端
+        - sleep 12 && watch -n 1 "ros2 topic list | grep fmu"

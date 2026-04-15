@@ -1,1 +1,11 @@
-CLAUDE.md
+# ROS 2 build artifacts
+build/
+install/
+log/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Weights and models (optional, if they are too big)
+*.pt

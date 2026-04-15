@@ -13,7 +13,7 @@ import cv2 # OpenCV library
 from ultralytics import YOLO # YOLO library
 
 # Load the YOLOv8 model
-model = YOLO('yolov8m.pt')
+model = YOLO('/root/PX4-ROS2-Gazebo-YOLOv8/yolov8m.pt')
 
 
 class ImageSubscriber(Node):
